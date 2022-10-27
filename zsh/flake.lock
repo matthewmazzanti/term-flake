@@ -15,13 +15,36 @@
         "type": "github"
       }
     },
+    "neovim-flake": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "vim-easyclip-src": "vim-easyclip-src",
+        "vim-fine-cmdline-src": "vim-fine-cmdline-src",
+        "vim-searchbox-src": "vim-searchbox-src"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-tHxruObVpGIq6cK8vNtNuSx+fJRP4P28SYNf/AW4zng=",
+        "path": "/nix/store/6axdgx22k8jlwvm43mv97wp1ffargzqz-source/nvim",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/6axdgx22k8jlwvm43mv97wp1ffargzqz-source/nvim",
+        "type": "path"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1666634325,
-        "narHash": "sha256-0PYdi0HDNasagoOrLv6LOXh2J++T+TnsDg8S/naJGDk=",
+        "lastModified": 1666753130,
+        "narHash": "sha256-Wff1dGPFSneXJLI2c0kkdWTgxnQ416KE6X4KnFkgPYQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "969c3ccf30a6cf8f7d431f097743a491b0eda4f7",
+        "rev": "f540aeda6f677354f1e7144ab04352f61aaa0118",
         "type": "github"
       },
       "original": {
@@ -32,7 +55,59 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs"
+      }
+    },
+    "vim-easyclip-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1550518062,
+        "narHash": "sha256-KBHC95cswqsQinMze/nlI43WZkXMXrDuTfK3z4hHYPg=",
+        "owner": "svermeulen",
+        "repo": "vim-easyclip",
+        "rev": "f1a3b95463402b30dd1e22dae7d0b6ea858db2df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "svermeulen",
+        "ref": "master",
+        "repo": "vim-easyclip",
+        "type": "github"
+      }
+    },
+    "vim-fine-cmdline-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656698978,
+        "narHash": "sha256-0aYHz6uRMVjctrDo8JKlTIUP2Oj+MrhBvgXRIwo/ueU=",
+        "owner": "vonheikemen",
+        "repo": "fine-cmdline.nvim",
+        "rev": "ead2b85e455eacde10469a8fcf1a717822d2bb9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vonheikemen",
+        "ref": "main",
+        "repo": "fine-cmdline.nvim",
+        "type": "github"
+      }
+    },
+    "vim-searchbox-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663688635,
+        "narHash": "sha256-WC7NsRGxCZWcnmNLDuS9yUeCyLd3/ExOEhRy6pGOb8s=",
+        "owner": "VonHeikemen",
+        "repo": "searchbox.nvim",
+        "rev": "4b8d3bb68283d27434d81b92424f1398fa9d739a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VonHeikemen",
+        "ref": "main",
+        "repo": "searchbox.nvim",
+        "type": "github"
       }
     }
   },

@@ -3,6 +3,7 @@
 local lspconfig = require("lspconfig")
 
 local function setup(plugins)
+    print("test")
     local function on_attach(_, bufnr)
         local function set(mode, keys, fn)
             vim.keymap.set(mode, keys, fn, { buffer = bufnr, silent = true })
@@ -19,14 +20,12 @@ local function setup(plugins)
         -- TODO: Reconsider this for opening help files. Possibly make function for if in comments?
         set("n", "K", vim.lsp.buf.hover)
         set("n", "<C-k>", vim.lsp.buf.signature_help)
-        set("n", "[d", vim.lsp.diagnostic.goto_prev)
-        set("n", "]d", vim.lsp.diagnostic.goto_next)
         set("n", "<leader>a", vim.lsp.buf.code_action)
         set("n", "<leader>r", vim.lsp.buf.rename)
     end
 
     -- TODO: Make this optional based on availability
-    local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- TODO: Make config for this use recursive sub-modules
     for name, cmd in pairs(language_servers) do

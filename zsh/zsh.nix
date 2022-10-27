@@ -3,8 +3,6 @@
   pkgs, lib, stdenv,
   # Derivation utils
   makeWrapper, writeTextFile, symlinkJoin,
-  # Vim specific stuff
-  neovim, vimPlugins, vimUtils
 }: config: let
   cfg = let
     module = lib.evalModules {
@@ -17,31 +15,15 @@
     };
   in module.config;
 
-  prompt = writeTextFile {
-    name = "prompt";
-    text = builtins.readFile ./src/prompt.zsh;
-  };
-
-  copy = writeTextFile {
-    name = "bracket";
-    text = builtins.readFile ./src/copy.zsh;
-  };
-
-  fsh-colors = writeTextFile {
-    name = "fsh-colors";
-    destination = "/fsh-colors.ini";
-    text = builtins.readFile ./src/fsh-colors.ini;
-  };
-
   theme = stdenv.mkDerivation {
     name = "fast-work-dir";
-    nativeBuildInputs = with pkgs; [ zsh zsh-fast-syntax-highlighting fsh-colors ];
+    nativeBuildInputs = with pkgs; [ zsh zsh-fast-syntax-highlighting ];
     buildCommand = ''
       zsh << EOF
         source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
         FAST_WORK_DIR="$out"
         mkdir -p "$out"
-        fast-theme ${fsh-colors}/fsh-colors.ini
+        fast-theme ${./src/fsh-colors.ini}
       EOF
     '';
   };
@@ -49,6 +31,8 @@
   path = symlinkJoin {
     name = "path";
     paths = with pkgs; [
+      nvim-cfg
+
       coreutils
       less
       vim
@@ -56,7 +40,6 @@
       wget
       git
 
-      neovim
       ripgrep
       fd
       bat
@@ -116,8 +99,8 @@
       eval "$(direnv hook zsh)"
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 
-      source ${copy}
-      source ${prompt}
+      source ${./src/copy.zsh}
+      source ${./src/prompt.zsh}
 
       # History options
       SAVEHIST=2000
@@ -152,8 +135,8 @@
 
 
       # Setup ls and tree to be a little nicer
-      eval "export $(gdircolors | sed 's/01;/0;/g')"
-      alias ls="gls --color=auto --group-directories-first --classify"
+      eval "export $(dircolors | sed 's/01;/0;/g')"
+      alias ls="ls --color=auto --group-directories-first --classify --dereference-command-line"
       alias tree="tree --dirsfirst"
 
 
@@ -163,6 +146,9 @@
       }
       alias untar="tar -xzvf"
       alias lstar="tar -tzvf"
+
+      alias vim=nvim
+      alias vi=vim
     '';
   };
 
@@ -173,13 +159,15 @@
       ln -s "${zshrc}" "$out/.zshrc"
     '';
   };
-in stdenv.mkDerivation {
+in symlinkJoin {
   name = "zsh-flake";
+  paths = [ pkgs.zsh ];
   buildInputs = [ makeWrapper ];
   # --add-flags '--no-globalrcs' \
-  buildCommand = with pkgs; ''
+  postBuild = ''
+    mv "$out/bin/zsh" "$out/bin/zsh-unwrapped"
     makeWrapper \
-      "${zsh}/bin/zsh" \
+      "$out/bin/zsh-unwrapped" \
       "$out/bin/zsh" \
       --set NOSYSZSHRC "1" \
       --set ZDOTDIR "${zdotdir}"
