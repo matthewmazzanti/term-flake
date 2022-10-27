@@ -30,11 +30,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-tHxruObVpGIq6cK8vNtNuSx+fJRP4P28SYNf/AW4zng=",
-        "path": "/nix/store/6axdgx22k8jlwvm43mv97wp1ffargzqz-source/nvim",
+        "path": "/nix/store/dzz8f6wvl36rabcywp4ix0sjz6g27fah-source/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6axdgx22k8jlwvm43mv97wp1ffargzqz-source/nvim",
+        "path": "/nix/store/dzz8f6wvl36rabcywp4ix0sjz6g27fah-source/nvim",
         "type": "path"
       }
     },
