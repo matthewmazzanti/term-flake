@@ -46,7 +46,7 @@ in {
         cmp_luasnip
     ];
     "treesitter" = [
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+      nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects
       nvim-ts-autotag
       # Disabled for now

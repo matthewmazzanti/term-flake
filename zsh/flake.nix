@@ -35,7 +35,7 @@
       in rec {
         packages = rec {
           default = pkgs.lib.makeOverridable zsh-pkg {
-            imports = [ profiles.mmazzanti ];
+            imports = [ (import ./config).mmazzanti ];
           };
           profiles = import ./config;
         };
