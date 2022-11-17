@@ -28,28 +28,33 @@
     '';
   };
 
+  syntax-highlighting = ''
+    # Fast theme writes to a cache file. I couldn't find a good way to tie this at runtime to the
+    # hash of this derivation
+    FAST_WORK_DIR="${theme}"
+    source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+    # Fast Syntax Highlighting
+    # Man highlighting takes a huge amount of time
+    FAST_HIGHLIGHT[chroma-man]=
+  '';
+
   path = symlinkJoin {
     name = "path";
-    paths = with pkgs; [
-      nvim-cfg
+    paths = cfg.path;
 
-      coreutils
-      less
-      vim
-      curl
-      wget
-      git
-
-      ripgrep
-      fd
-      bat
-      tree
-      direnv
-      fzf
-      # Fix python3.10 openssl
-      # httpie
+    /*
     ];
+    */
   };
+
+  autosuggestions = ''
+    source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # Zsh Autosuggestions
+    ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+    ZSH_AUTOSUGGEST_USE_ASYNC=true
+    ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
+  '';
+
 
   # https://superuser.com/a/648046
   # zsh's default handling for escape sequences is not great for a vi mode.
@@ -82,23 +87,10 @@
       autoload -U compinit && compinit
       autoload -U bashcompinit && bashcompinit
 
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      # Zsh Autosuggestions
-      ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-      ZSH_AUTOSUGGEST_USE_ASYNC=true
-      ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
-
-      # Fast theme writes to a cache file. I couldn't find a good way to tie this at runtime to the
-      # hash of this derivation
-      FAST_WORK_DIR="${theme}"
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-      # Fast Syntax Highlighting
-      # Man highlighting takes a huge amount of time
-      FAST_HIGHLIGHT[chroma-man]=
-
+      ${autosuggestions}
+      ${syntax-highlighting}
       eval "$(direnv hook zsh)"
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-
       source ${./src/copy.zsh}
       source ${./src/prompt.zsh}
 

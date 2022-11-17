@@ -15,6 +15,28 @@
         "type": "github"
       }
     },
+    "less-flake": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "less",
+        "lastModified": 1666914021,
+        "narHash": "sha256-vsrt5RHRN12vJZpXBo1f1S7agkX+E9IflRH9OKwI06s=",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=less"
+      },
+      "original": {
+        "dir": "less",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=less"
+      }
+    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": [
@@ -28,14 +50,16 @@
         "vim-searchbox-src": "vim-searchbox-src"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-tHxruObVpGIq6cK8vNtNuSx+fJRP4P28SYNf/AW4zng=",
-        "path": "/nix/store/dzz8f6wvl36rabcywp4ix0sjz6g27fah-source/nvim",
-        "type": "path"
+        "dir": "nvim",
+        "lastModified": 1666914021,
+        "narHash": "sha256-FiqmE+QlAAOcZ8gZPmABCtlQIS0CZ6fzWFuYfMBmX3o=",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=nvim"
       },
       "original": {
-        "path": "/nix/store/dzz8f6wvl36rabcywp4ix0sjz6g27fah-source/nvim",
-        "type": "path"
+        "dir": "nvim",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=nvim"
       }
     },
     "nixpkgs": {
@@ -55,6 +79,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "less-flake": "less-flake",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs"
       }
