@@ -73,7 +73,7 @@
   zshrc = writeTextFile {
     name = "zshrc";
     text = ''
-      export PATH="${path}/bin:$PATH"
+      export PATH="${path}/bin:/opt/homebrew/bin:$PATH"
       export NIX_PROFILES=("${path}" $NIX_PROFILES)
       # Tell zsh how to find installed completions
       for p in ''${(z)NIX_PROFILES}; do

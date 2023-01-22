@@ -20,6 +20,9 @@
       jq
       # Fix python3.10 openssl
       # httpie
+
+      gnupg
+      pass
     ];
   };
 }
