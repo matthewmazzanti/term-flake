@@ -26,8 +26,11 @@
       },
       "locked": {
         "dir": "less",
-        "lastModified": 1674612277,
-        "narHash": "sha256-kJiLzhkgDQe9FyOK1lrOKDvwhxnF0iwjy7K/LX/wCjA=",
+        "lastModified": 1674612355,
+        "narHash": "sha256-PLyL/JiQZISxQYgADOVpCN5Txth1L9Y8C/j9oLbbUas=",
+        "ref": "refs/heads/dev",
+        "rev": "5f9e5c34951d244adc35bac3a4f29c13564ef621",
+        "revCount": 11,
         "type": "git",
         "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=less"
       },
@@ -51,8 +54,11 @@
       },
       "locked": {
         "dir": "nvim",
-        "lastModified": 1674612277,
-        "narHash": "sha256-kJiLzhkgDQe9FyOK1lrOKDvwhxnF0iwjy7K/LX/wCjA=",
+        "lastModified": 1674612355,
+        "narHash": "sha256-PLyL/JiQZISxQYgADOVpCN5Txth1L9Y8C/j9oLbbUas=",
+        "ref": "refs/heads/dev",
+        "rev": "5f9e5c34951d244adc35bac3a4f29c13564ef621",
+        "revCount": 11,
         "type": "git",
         "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=nvim"
       },
