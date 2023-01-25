@@ -18,8 +18,8 @@ vim.opt.backspace = {"indent", "eol", "start"}
 
 
 -- Line wrapping
-vim.opt.colorcolumn = "101"
-vim.opt.textwidth = 100
+vim.opt.colorcolumn = "81"
+vim.opt.textwidth = 80
 -- May be more options to explore here
 vim.opt.formatoptions = table.concat({
   "c", -- Auto wrap comments
