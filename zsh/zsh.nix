@@ -142,6 +142,26 @@
       alias vim=nvim
       alias vi=vim
       export EDITOR=nvim
+
+      function init() {(
+          set -e
+          template="$1"
+          dest="$2"
+
+          # Copy template
+          nix flake new --template "$HOME/src/nix/templates#$template" "$dest"
+          cd "$dest"
+
+          # Initialize git repo
+          git init
+          git add .
+          git commit -m "Initial commit from template $template"
+
+          # Update flake, commit
+          nix flake update \
+              --commit-lock-file \
+              --commit-lockfile-summary "Update flake.lock"
+      )}
     '';
   };
 
