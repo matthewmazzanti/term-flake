@@ -28,6 +28,11 @@
     '';
   };
 
+  path = symlinkJoin {
+    name = "path";
+    paths = cfg.path;
+  };
+
   syntax-highlighting = ''
     # Fast theme writes to a cache file. I couldn't find a good way to tie this at runtime to the
     # hash of this derivation
@@ -37,15 +42,6 @@
     # Man highlighting takes a huge amount of time
     FAST_HIGHLIGHT[chroma-man]=
   '';
-
-  path = symlinkJoin {
-    name = "path";
-    paths = cfg.path;
-
-    /*
-    ];
-    */
-  };
 
   autosuggestions = ''
     source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
