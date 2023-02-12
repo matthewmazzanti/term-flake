@@ -52,7 +52,7 @@
     systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
 
   in flake-utils.lib.eachSystem systems (system:
-    let 
+    let
       pkgs = import nixpkgs {
         inherit system;
         overlays = [

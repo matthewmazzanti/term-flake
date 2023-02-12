@@ -54,8 +54,8 @@ vim.opt.listchars = {
     tab = "» ",
     extends = "›",
     precedes = "‹",
-    nbsp = "·",
-    trail = "·",
+    nbsp = "␣",
+    trail = "•",
 }
 
 -- Persistent undo
