@@ -23,6 +23,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
+    /*
     zsh = {
       url = "path:./zsh";
       inputs = {
@@ -33,6 +34,7 @@
         # short-pwd.follows = "short-pwd";
       };
     };
+    */
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:

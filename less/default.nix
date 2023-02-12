@@ -4,15 +4,12 @@
   # Derivation utils
   makeWrapper, symlinkJoin,
 }:
+
 let
-  /*
   # TODO: Generate lesskey from config
   lesskeyBin = pkgs.runCommand "lesskey-bin" {} ''
     ${pkgs.less}/bin/lesskey -o $out -- ${./lesskey}
   '';
-  --add-flags "--lesskey-file=${lesskeyBin}" \
-  */
-
 in symlinkJoin {
   name = "less";
   paths = [ pkgs.less ];
@@ -25,6 +22,7 @@ in symlinkJoin {
     makeWrapper \
       "$out/bin/less-unwrapped" \
       "$out/bin/less" \
+      --add-flags "--lesskey-file=${lesskeyBin}" \
       --add-flags "--chop-long-lines" \
       --add-flags "--RAW-CONTROL-CHARS" \
       --add-flags "--quit-if-one-screen" \
