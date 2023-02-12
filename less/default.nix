@@ -9,11 +9,11 @@
     ${pkgs.less}/bin/lesskey -o $out -- ${./lesskey}
   '';
 in symlinkJoin {
-  name = "less-flake";
+  name = "less";
   paths = [ pkgs.less ];
   buildInputs = [ makeWrapper ];
-  # TODO: IMPURITY - lesskey loading will fetch from system paths and environment variable.
-  # may be a good idea to see if this can be overridden
+  # TODO: IMPURITY - lesskey loading will fetch from system paths and
+  # environment variable. may be a good idea to see if this can be overridden
   # TODO: Set default flags from config. Possibly set in lesskey
   postBuild = ''
     mv "$out/bin/less" "$out/bin/less-unwrapped"

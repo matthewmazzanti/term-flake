@@ -7,19 +7,15 @@
     with flake-utils.lib;
     eachSystem defaultSystems (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-
-        less-pkg = pkgs.callPackage ./less.nix { };
+        pkgs = import nixpkgs { inherit system; };
+        pkg = pkgs.callPackage ./. { };
       in
       rec {
-        packages = rec {
-          default = pkgs.lib.makeOverridable less-pkg {
-            imports = [ profiles.mmazzanti ];
-          };
-          profiles = import ./config;
+        packages.default = pkgs.lib.makeOverridable pkg {
+          imports = [ lib.profiles.mmazzanti ];
         };
+
+        lib.profiles = import ./config;
       }
     );
 }

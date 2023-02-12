@@ -40,14 +40,13 @@
     eachSystem defaultSystems (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        readDefault = name: inputs.${name}.packages.${system}.default;
       in
       {
         packages = {
-          less = readDefault "less";
-          nvim = readDefault "nvim";
-          short-pwd = readDefault "short-pwd";
-          zsh = readDefault "zsh";
+          less = inputs.less.packages.${system}.default;
+          nvim = inputs.nvim.packages.${system}.default;
+          short-pwd = inputs.short-pwd.packages.${system}.default;
+          # zsh = inputs.zsh.packages.${system}.default;
         };
 
         devShells.default = with pkgs; mkShell {
