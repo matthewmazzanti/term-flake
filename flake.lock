@@ -15,24 +15,273 @@
         "type": "github"
       }
     },
+    "less": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-SqB0l9jMN7IPsTQrnYkr67ejt6fgE3m81GzxdNE25mU=",
+        "path": "./less",
+        "type": "path"
+      },
+      "original": {
+        "path": "./less",
+        "type": "path"
+      }
+    },
+    "less-flake": {
+      "inputs": {
+        "flake-utils": [
+          "zsh",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "zsh",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "less",
+        "lastModified": 1674612355,
+        "narHash": "sha256-PLyL/JiQZISxQYgADOVpCN5Txth1L9Y8C/j9oLbbUas=",
+        "ref": "refs/heads/dev",
+        "rev": "5f9e5c34951d244adc35bac3a4f29c13564ef621",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=less"
+      },
+      "original": {
+        "dir": "less",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=less"
+      }
+    },
+    "neovim-flake": {
+      "inputs": {
+        "flake-utils": [
+          "zsh",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "zsh",
+          "nixpkgs"
+        ],
+        "vim-easyclip-src": "vim-easyclip-src_2",
+        "vim-fine-cmdline-src": "vim-fine-cmdline-src_2",
+        "vim-searchbox-src": "vim-searchbox-src_2"
+      },
+      "locked": {
+        "dir": "nvim",
+        "lastModified": 1674612355,
+        "narHash": "sha256-PLyL/JiQZISxQYgADOVpCN5Txth1L9Y8C/j9oLbbUas=",
+        "ref": "refs/heads/dev",
+        "rev": "5f9e5c34951d244adc35bac3a4f29c13564ef621",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=nvim"
+      },
+      "original": {
+        "dir": "nvim",
+        "type": "git",
+        "url": "file:///Users/mmazzanti/src/nix/term-flake?dir=nvim"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1675940568,
-        "narHash": "sha256-epG6pOT9V0kS+FUqd7R6/CWkgnZx2DMT5Veqo+y6G3c=",
+        "lastModified": 1676110339,
+        "narHash": "sha256-kOS/L8OOL2odpCOM11IevfHxcUeE0vnZUQ74EOiwXcs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6ccc4a59c3f1b56d039d93da52696633e641bc71",
+        "rev": "e5530aba13caff5a4f41713f1265b754dc2abfd8",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
+        "ref": "nixos-unstable",
         "type": "indirect"
+      }
+    },
+    "nvim": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "vim-easyclip-src": "vim-easyclip-src",
+        "vim-fine-cmdline-src": "vim-fine-cmdline-src",
+        "vim-searchbox-src": "vim-searchbox-src"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Mh5PdIT2t5IqZ67l2gTxbacN6HGIRSpw9LHTKBhLbHU=",
+        "path": "./nvim",
+        "type": "path"
+      },
+      "original": {
+        "path": "./nvim",
+        "type": "path"
       }
     },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "less": "less",
+        "nixpkgs": "nixpkgs",
+        "nvim": "nvim",
+        "short-pwd": "short-pwd",
+        "zsh": "zsh"
+      }
+    },
+    "short-pwd": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-jYGdtL5o1PBwSUUyybPEZUzvddL1vKsCTgqxZLGAaWU=",
+        "path": "./short-pwd",
+        "type": "path"
+      },
+      "original": {
+        "path": "./short-pwd",
+        "type": "path"
+      }
+    },
+    "vim-easyclip-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1550518062,
+        "narHash": "sha256-KBHC95cswqsQinMze/nlI43WZkXMXrDuTfK3z4hHYPg=",
+        "owner": "svermeulen",
+        "repo": "vim-easyclip",
+        "rev": "f1a3b95463402b30dd1e22dae7d0b6ea858db2df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "svermeulen",
+        "ref": "master",
+        "repo": "vim-easyclip",
+        "type": "github"
+      }
+    },
+    "vim-easyclip-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1550518062,
+        "narHash": "sha256-KBHC95cswqsQinMze/nlI43WZkXMXrDuTfK3z4hHYPg=",
+        "owner": "svermeulen",
+        "repo": "vim-easyclip",
+        "rev": "f1a3b95463402b30dd1e22dae7d0b6ea858db2df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "svermeulen",
+        "ref": "master",
+        "repo": "vim-easyclip",
+        "type": "github"
+      }
+    },
+    "vim-fine-cmdline-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656698978,
+        "narHash": "sha256-0aYHz6uRMVjctrDo8JKlTIUP2Oj+MrhBvgXRIwo/ueU=",
+        "owner": "vonheikemen",
+        "repo": "fine-cmdline.nvim",
+        "rev": "ead2b85e455eacde10469a8fcf1a717822d2bb9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vonheikemen",
+        "ref": "main",
+        "repo": "fine-cmdline.nvim",
+        "type": "github"
+      }
+    },
+    "vim-fine-cmdline-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656698978,
+        "narHash": "sha256-0aYHz6uRMVjctrDo8JKlTIUP2Oj+MrhBvgXRIwo/ueU=",
+        "owner": "vonheikemen",
+        "repo": "fine-cmdline.nvim",
+        "rev": "ead2b85e455eacde10469a8fcf1a717822d2bb9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vonheikemen",
+        "ref": "main",
+        "repo": "fine-cmdline.nvim",
+        "type": "github"
+      }
+    },
+    "vim-searchbox-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667232914,
+        "narHash": "sha256-Bx4Msp96hlcYVDvDC3gBv78zmde0T5XacxgiZt+LULU=",
+        "owner": "VonHeikemen",
+        "repo": "searchbox.nvim",
+        "rev": "110949af8963185b4e732b45ae57beb731bfcede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VonHeikemen",
+        "ref": "main",
+        "repo": "searchbox.nvim",
+        "type": "github"
+      }
+    },
+    "vim-searchbox-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667232914,
+        "narHash": "sha256-Bx4Msp96hlcYVDvDC3gBv78zmde0T5XacxgiZt+LULU=",
+        "owner": "VonHeikemen",
+        "repo": "searchbox.nvim",
+        "rev": "110949af8963185b4e732b45ae57beb731bfcede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VonHeikemen",
+        "ref": "main",
+        "repo": "searchbox.nvim",
+        "type": "github"
+      }
+    },
+    "zsh": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "less-flake": "less-flake",
+        "neovim-flake": "neovim-flake",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-xWUJpX7qjhs8+ORQZXbrUrSKbkn3fEdAfi0NDEGqwY8=",
+        "path": "./zsh",
+        "type": "path"
+      },
+      "original": {
+        "path": "./zsh",
+        "type": "path"
       }
     }
   },

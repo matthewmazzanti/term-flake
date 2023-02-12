@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if [ -z "$ROOT" ]; then exit 1; fi
+mkdir -p "$ROOT/build"
+nix build "$ROOT#$1"
