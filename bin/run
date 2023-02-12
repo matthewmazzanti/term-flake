@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+set -e
+
 if [ -z "$ROOT" ]; then exit 1; fi
-mkdir -p "$ROOT/build"
-nix build "$ROOT#$1"
+
+name="$1"
+shift
+build_out="$(build "$name")"
+
+build "$name"
+exec "$build_out/bin/$name" $@
