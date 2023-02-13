@@ -79,7 +79,8 @@
         "less": "less",
         "nixpkgs": "nixpkgs",
         "nvim": "nvim",
-        "short-pwd": "short-pwd"
+        "short-pwd": "short-pwd",
+        "zsh": "zsh"
       }
     },
     "short-pwd": {
@@ -151,6 +152,35 @@
         "ref": "main",
         "repo": "searchbox.nvim",
         "type": "github"
+      }
+    },
+    "zsh": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "less": [
+          "less"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvim": [
+          "nvim"
+        ],
+        "short-pwd": [
+          "short-pwd"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-JxsXtuN014PA9Jtr7HpyogiSv3+aTQoQ9aO4Pzd/gLw=",
+        "path": "./zsh",
+        "type": "path"
+      },
+      "original": {
+        "path": "./zsh",
+        "type": "path"
       }
     }
   },

@@ -23,18 +23,16 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    /*
     zsh = {
       url = "path:./zsh";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
-        # less.follows = "less";
-        # nvim.follows = "nvim";
-        # short-pwd.follows = "short-pwd";
+        less.follows = "less";
+        nvim.follows = "nvim";
+        short-pwd.follows = "short-pwd";
       };
     };
-    */
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -48,7 +46,7 @@
           less = inputs.less.packages.${system}.default;
           nvim = inputs.nvim.packages.${system}.default;
           short-pwd = inputs.short-pwd.packages.${system}.default;
-          # zsh = inputs.zsh.packages.${system}.default;
+          zsh = inputs.zsh.packages.${system}.default;
         };
 
         devShells.default = with pkgs; mkShell {
