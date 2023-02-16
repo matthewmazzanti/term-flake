@@ -5,7 +5,9 @@
   makeWrapper, writeTextFile,
   # Vim specific stuff
   neovim, vimPlugins, vimUtils
-}: config: let
+}:
+config:
+let
   cfg = let
     module = lib.evalModules {
       modules = [ ./options.nix config ];
@@ -57,7 +59,7 @@
   };
 
   # Make a script from an dict. Map each key/value to a string, collect into list, and join together
-  # mkScript :: (Key -> a -> String) -> Dict -> String
+  # mkScript :: (k -> v -> String) -> Dict k v -> String
   mkScript = with builtins; fn: set: concatStringsSep "\n" (attrValues (mapAttrs fn set));
 
   # Lua to load plugins. Happens in two phases:

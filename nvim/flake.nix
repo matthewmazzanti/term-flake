@@ -66,7 +66,7 @@
       in
       rec {
         packages.default = pkgs.lib.makeOverridable nvim-pkg {
-          imports = [ lib.profiles.mmazzanti ];
+          imports = [ lib.profiles.minimal ];
         };
         lib.profiles = import ./config;
       }

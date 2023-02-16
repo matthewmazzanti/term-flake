@@ -64,7 +64,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Mh5PdIT2t5IqZ67l2gTxbacN6HGIRSpw9LHTKBhLbHU=",
+        "narHash": "sha256-RH4fv46p+U/akD2CQX058Ax4sJaNZxqKDuEvRwgZmkY=",
         "path": "./nvim",
         "type": "path"
       },
@@ -174,7 +174,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-JxsXtuN014PA9Jtr7HpyogiSv3+aTQoQ9aO4Pzd/gLw=",
+        "narHash": "sha256-irCNPc9XKsWltoS5UhAgAxjXnHpsil5mFgOHCrKJnso=",
         "path": "./zsh",
         "type": "path"
       },

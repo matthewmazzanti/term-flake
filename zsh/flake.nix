@@ -20,9 +20,9 @@
   };
 
   outputs = { nixpkgs, flake-utils, ... }@inputs:
-    let
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-    in flake-utils.lib.eachSystem systems (system: let
+    with flake-utils.lib;
+    eachSystem defaultSystems (system:
+      let
         overlay = _: super: {
           nvim-cfg = inputs.nvim.packages.${system}.default;
           less-cfg = inputs.less.packages.${system}.default;
@@ -33,8 +33,9 @@
           overlays = [ overlay ];
         };
 
-        zsh-pkg = pkgs.callPackage ./zsh.nix {};
-      in rec {
+        zsh-pkg = pkgs.callPackage ./zsh.nix { };
+      in
+      rec {
         packages = rec {
           default = pkgs.lib.makeOverridable zsh-pkg {
             imports = [ (import ./config).mmazzanti ];
