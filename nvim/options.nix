@@ -2,34 +2,73 @@
 with lib;
 let
   # Add modules for simple vim plugins just based off of a plugin package
-  mkBasicModule = name: plugins: { pkgs, lib, config, ... }: let
+  mkBasicModule = name: plugins: { pkgs, lib, config, ... }:
+  let
     cfg = config.plugins.${name};
-  in with lib; {
-    options.plugins.${name} = {
-      enable = mkEnableOption "Enable ${name}";
-      config = mkOption {
-        type = types.str;
-        default = "";
+  in
+    with lib;
+    {
+      options.plugins.${name} = {
+        enable = mkEnableOption "Enable ${name}";
+        config = mkOption {
+          type = types.str;
+          default = "";
+        };
       };
-    };
 
-    config.vim = mkIf cfg.enable {
-      plugins.start = if isList plugins then plugins else [plugins];
+      config.vim = mkIf cfg.enable {
+        plugins.start = if isList plugins then plugins else [plugins];
 
-      setup = if cfg.config == "" then {} else {
-        ${name} = pkgs.writeTextFile {
-          name = "${name}-setup.lua";
-          text = cfg.config;
+        setup = if cfg.config == "" then {} else {
+          ${name} = pkgs.writeTextFile {
+            name = "${name}-setup.lua";
+            text = cfg.config;
+          };
         };
       };
     };
-  };
 
   mkImports = set: attrValues (mapAttrs mkBasicModule set);
 
   nvim-pkg = pkgs.callPackage ./pkg.nix {};
+
+  telescope = { pkgs, lib, config, ... }:
+  with lib;
+  {
+    options = {
+      enable = mkEnableOption "telescope";
+
+      setupScript = mkOption {
+        type = types.str;
+        default = "";
+      };
+
+      out.setup = mkOption {
+        type = types.package;
+        readOnly = true;
+      };
+
+      out.plugins = mkOption {
+        type = types.listOf types.package;
+        readOnly = true;
+      };
+    };
+
+    config = mkIf config.enable {
+      out.setup = pkgs.writeTextFile {
+        name = "telescope-setup.lua";
+        text = config.setupScript;
+      };
+
+      out.plugins = with pkgs.vimPlugins; [
+        telescope-nvim
+        telescope-fzf-native-nvim
+      ];
+    };
+  };
 in
   {
+    /*
     imports = with pkgs.vimPlugins; mkImports {
       "python-indent" = vim-python-pep8-indent;
       "fugitive" = vim-fugitive;
@@ -54,14 +93,13 @@ in
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
         nvim-ts-autotag
-        # Disabled for now
-        # spellsitter-nvim
       ];
       "telescope" = [
         telescope-nvim
         telescope-fzf-native-nvim
       ];
     };
+    */
 
     options = {
       enable = mkEnableOption "nvim";
@@ -79,6 +117,17 @@ in
       vimAlias = mkOption {
         type = types.bool;
         default = false;
+      };
+
+      plugins.telescope = mkOption {
+        type = types.submoduleWith {
+          modules = [telescope];
+          specialArgs = {
+            inherit pkgs;
+            inherit lib;
+          };
+          shorthandOnlyDefinesConfig = true;
+        };
       };
 
       # Options to configure vim itself
@@ -124,7 +173,12 @@ in
       };
     };
 
-    config = mkIf config.enable {
+    config = {
+      vim.setup = {
+        "telescope" = config.plugins.telescope.out.setup;
+      };
+      vim.plugins.start = config.plugins.telescope.out.plugins;
+
       out = nvim-pkg config;
     };
   }

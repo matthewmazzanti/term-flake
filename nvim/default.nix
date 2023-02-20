@@ -6,7 +6,7 @@ let
     module = lib.evalModules {
       modules = [
         ./options.nix
-        config.minimal
+        config.mmazzanti
       ];
 
       specialArgs = {
