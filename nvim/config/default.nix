@@ -3,6 +3,8 @@
 # defined explicitly
 with builtins; rec {
   minimal.config = {
+    enable = true;
+
     vim = {
       ftplugin = import ./ftplugin;
       init = readFile ./init.lua;

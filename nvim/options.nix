@@ -1,4 +1,6 @@
-{ pkgs, lib, ... }: with lib; let
+{ pkgs, lib, config, ... }:
+with lib;
+let
   # Add modules for simple vim plugins just based off of a plugin package
   mkBasicModule = name: plugins: { pkgs, lib, config, ... }: let
     cfg = config.plugins.${name};
@@ -24,91 +26,105 @@
   };
 
   mkImports = set: attrValues (mapAttrs mkBasicModule set);
-in {
-  imports = with pkgs.vimPlugins; mkImports {
-    "python-indent" = vim-python-pep8-indent;
-    "fugitive" = vim-fugitive;
-    "signature" = vim-signature;
-    "nix" = vim-nix;
-    "wordmotion" = vim-wordmotion;
-    "easyclip" = vim-easyclip;
-    "gruvbox" = gruvbox-community;
-    "lspconfig" = nvim-lspconfig;
-    "lualine" = lualine-nvim;
-    "searchbox" = vim-searchbox;
-    "sandwich" = vim-sandwich;
-    "fine-cmdline" = vim-fine-cmdline;
-    "cmp" = [
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-buffer
-        luasnip
-        cmp_luasnip
-    ];
-    "treesitter" = [
-      nvim-treesitter.withAllGrammars
-      nvim-treesitter-textobjects
-      nvim-ts-autotag
-      # Disabled for now
-      # spellsitter-nvim
-    ];
-    "telescope" = [
-      telescope-nvim
-      telescope-fzf-native-nvim
-    ];
-  };
 
-  options = {
-    viAlias = mkOption {
-      type = types.bool;
-      default = false;
+  nvim-pkg = pkgs.callPackage ./pkg.nix {};
+in
+  {
+    imports = with pkgs.vimPlugins; mkImports {
+      "python-indent" = vim-python-pep8-indent;
+      "fugitive" = vim-fugitive;
+      "signature" = vim-signature;
+      "nix" = vim-nix;
+      "wordmotion" = vim-wordmotion;
+      "easyclip" = vim-easyclip;
+      "gruvbox" = gruvbox-community;
+      "lspconfig" = nvim-lspconfig;
+      "lualine" = lualine-nvim;
+      "searchbox" = vim-searchbox;
+      "sandwich" = vim-sandwich;
+      "fine-cmdline" = vim-fine-cmdline;
+      "cmp" = [
+          nvim-cmp
+          cmp-nvim-lsp
+          cmp-buffer
+          luasnip
+          cmp_luasnip
+      ];
+      "treesitter" = [
+        nvim-treesitter.withAllGrammars
+        nvim-treesitter-textobjects
+        nvim-ts-autotag
+        # Disabled for now
+        # spellsitter-nvim
+      ];
+      "telescope" = [
+        telescope-nvim
+        telescope-fzf-native-nvim
+      ];
     };
 
-    vimAlias = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    options = {
+      enable = mkEnableOption "nvim";
 
-    # Options to configure vim itself
-    vim = {
-      ftplugin = mkOption {
-        type = types.attrsOf types.str;
-        default = {};
-        description = ''
-        contents of ftplugins to load
-        '';
+      out = mkOption {
+        type = types.package;
+        readOnly = true;
       };
 
-      setup = mkOption {
-        type = types.attrsOf types.package;
-        default = {};
-        description = ''
-        Lua config packages to link into $XDG_CONFIG_HOME/nvim/lua
-        '';
+      viAlias = mkOption {
+        type = types.bool;
+        default = false;
       };
 
-      init = mkOption {
-        type = types.str;
-        default = "";
+      vimAlias = mkOption {
+        type = types.bool;
+        default = false;
       };
 
-      plugins = {
-        start = mkOption {
-          type = types.listOf types.package;
-          default = [];
+      # Options to configure vim itself
+      vim = {
+        ftplugin = mkOption {
+          type = types.attrsOf types.str;
+          default = {};
           description = ''
-          Plugins to load on start
+          contents of ftplugins to load
           '';
         };
 
-        opt = mkOption {
-          type = types.listOf types.package;
-          default = [];
+        setup = mkOption {
+          type = types.attrsOf types.package;
+          default = {};
           description = ''
-          Plugins to optionally load
+          Lua config packages to link into $XDG_CONFIG_HOME/nvim/lua
           '';
+        };
+
+        init = mkOption {
+          type = types.str;
+          default = "";
+        };
+
+        plugins = {
+          start = mkOption {
+            type = types.listOf types.package;
+            default = [];
+            description = ''
+            Plugins to load on start
+            '';
+          };
+
+          opt = mkOption {
+            type = types.listOf types.package;
+            default = [];
+            description = ''
+            Plugins to optionally load
+            '';
+          };
         };
       };
     };
-  };
-}
+
+    config = mkIf config.enable {
+      out = nvim-pkg config;
+    };
+  }

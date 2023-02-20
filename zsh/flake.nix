@@ -2,11 +2,13 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    /*
     nvim = {
       url = "github:matthewmazzanti/term-flake?dir=nvim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    */
     less = {
       url = "github:matthewmazzanti/term-flake?dir=less";
       inputs.nixpkgs.follows = "nixpkgs";

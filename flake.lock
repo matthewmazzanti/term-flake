@@ -53,24 +53,31 @@
     "nvim": {
       "inputs": {
         "flake-utils": [
+          "zsh",
           "flake-utils"
         ],
         "nixpkgs": [
+          "zsh",
           "nixpkgs"
         ],
-        "vim-easyclip-src": "vim-easyclip-src",
-        "vim-fine-cmdline-src": "vim-fine-cmdline-src",
-        "vim-searchbox-src": "vim-searchbox-src"
+        "vim-easyclip-src": "vim-easyclip-src_2",
+        "vim-fine-cmdline-src": "vim-fine-cmdline-src_2",
+        "vim-searchbox-src": "vim-searchbox-src_2"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-RH4fv46p+U/akD2CQX058Ax4sJaNZxqKDuEvRwgZmkY=",
-        "path": "./nvim",
-        "type": "path"
+        "dir": "nvim",
+        "lastModified": 1675051206,
+        "narHash": "sha256-osgQNbR//tpsZ+WVEgPID0q/vfLorqiVPFNp1d77Y0c=",
+        "owner": "matthewmazzanti",
+        "repo": "term-flake",
+        "rev": "35b536148b9105b6fec3fb528842f5457dfb5d52",
+        "type": "github"
       },
       "original": {
-        "path": "./nvim",
-        "type": "path"
+        "dir": "nvim",
+        "owner": "matthewmazzanti",
+        "repo": "term-flake",
+        "type": "github"
       }
     },
     "root": {
@@ -78,8 +85,10 @@
         "flake-utils": "flake-utils",
         "less": "less",
         "nixpkgs": "nixpkgs",
-        "nvim": "nvim",
         "short-pwd": "short-pwd",
+        "vim-easyclip-src": "vim-easyclip-src",
+        "vim-fine-cmdline-src": "vim-fine-cmdline-src",
+        "vim-searchbox-src": "vim-searchbox-src",
         "zsh": "zsh"
       }
     },
@@ -120,7 +129,41 @@
         "type": "github"
       }
     },
+    "vim-easyclip-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1550518062,
+        "narHash": "sha256-KBHC95cswqsQinMze/nlI43WZkXMXrDuTfK3z4hHYPg=",
+        "owner": "svermeulen",
+        "repo": "vim-easyclip",
+        "rev": "f1a3b95463402b30dd1e22dae7d0b6ea858db2df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "svermeulen",
+        "ref": "master",
+        "repo": "vim-easyclip",
+        "type": "github"
+      }
+    },
     "vim-fine-cmdline-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656698978,
+        "narHash": "sha256-0aYHz6uRMVjctrDo8JKlTIUP2Oj+MrhBvgXRIwo/ueU=",
+        "owner": "vonheikemen",
+        "repo": "fine-cmdline.nvim",
+        "rev": "ead2b85e455eacde10469a8fcf1a717822d2bb9a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vonheikemen",
+        "ref": "main",
+        "repo": "fine-cmdline.nvim",
+        "type": "github"
+      }
+    },
+    "vim-fine-cmdline-src_2": {
       "flake": false,
       "locked": {
         "lastModified": 1656698978,
@@ -154,6 +197,23 @@
         "type": "github"
       }
     },
+    "vim-searchbox-src_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1667232914,
+        "narHash": "sha256-Bx4Msp96hlcYVDvDC3gBv78zmde0T5XacxgiZt+LULU=",
+        "owner": "VonHeikemen",
+        "repo": "searchbox.nvim",
+        "rev": "110949af8963185b4e732b45ae57beb731bfcede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VonHeikemen",
+        "ref": "main",
+        "repo": "searchbox.nvim",
+        "type": "github"
+      }
+    },
     "zsh": {
       "inputs": {
         "flake-utils": [
@@ -165,9 +225,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvim": [
-          "nvim"
-        ],
+        "nvim": "nvim",
         "short-pwd": [
           "short-pwd"
         ]

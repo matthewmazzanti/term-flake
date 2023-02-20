@@ -8,35 +8,7 @@
 }:
 config:
 let
-  cfg = let
-    module = lib.evalModules {
-      modules = [ ./options.nix config ];
-
-      specialArgs = {
-        inherit pkgs;
-        inherit lib;
-      };
-    };
-  in module.config;
-
-  init = let
-    packDir = vimUtils.packDir {
-      neovim = {
-        start = [ftpluginDrv] ++ cfg.vim.plugins.start;
-        opt = cfg.vim.plugins.opt;
-      };
-    };
-  in writeTextFile {
-    name = "init.lua";
-    text = ''
-      vim.opt.packpath:prepend({"${packDir}"})
-      vim.opt.runtimepath:prepend({"${packDir}"})
-
-      ${cfg.vim.init}
-
-      ${loadSetup cfg.vim.setup}
-    '';
-  };
+  cfg = config;
 
   # TODO: Ensure that this is sourced with a higher priority than other plugins
   ftpluginDrv = with builtins; let
@@ -58,13 +30,36 @@ let
     buildCommand = writeFtPlugins cfg.vim.ftplugin;
   };
 
-  # Make a script from an dict. Map each key/value to a string, collect into list, and join together
-  # mkScript :: (k -> v -> String) -> Dict k v -> String
-  mkScript = with builtins; fn: set: concatStringsSep "\n" (attrValues (mapAttrs fn set));
+
+  init = let
+    packDir = vimUtils.packDir {
+      neovim = {
+        start = [ftpluginDrv] ++ cfg.vim.plugins.start;
+        opt = cfg.vim.plugins.opt;
+      };
+    };
+  in writeTextFile {
+    name = "init.lua";
+    text = ''
+      vim.opt.packpath:prepend({"${packDir}"})
+      vim.opt.runtimepath:prepend({"${packDir}"})
+
+      ${cfg.vim.init}
+
+      ${loadSetup cfg.vim.setup}
+    '';
+  };
+
+  # Make a script from an dict. Map each key/value to a string, collect into
+  # list, and join together mkScript :: (k -> v -> String) -> Dict k v -> String
+  mkScript =
+    with builtins;
+    fn: set: concatStringsSep "\n" (attrValues (mapAttrs fn set));
 
   # Lua to load plugins. Happens in two phases:
   # require, where the plugin is required and result added to the plugins table
-  # setup, where the plugin's `setup` method is called, if present, with the above plugin table
+  # setup, where the plugin's `setup` method is called, if present, with the
+  # above plugin table
   loadSetup = let
     load = mkScript (name: pkg: ''plugins["${name}"] = load_plugin("${pkg}")'');
   in setups: ''
@@ -91,8 +86,8 @@ let
 in stdenv.mkDerivation {
   name = "neovim-flake";
   buildInputs = [ makeWrapper ];
-  # TODO: According to docs, there are a lot more startup options that can load files into the
-  # runtime - may be smart to unset those if they cause problems
+  # TODO: According to docs, there are a lot more startup options that can load
+  # files into the runtime - may be smart to unset those if they cause problems
   # TODO: Make aliasing part less terrible
   buildCommand = ''
     makeWrapper \
