@@ -28,6 +28,7 @@ cmp.setup({
         end,
     },
     window = {
+        -- TODO: Border color not great
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
     },
