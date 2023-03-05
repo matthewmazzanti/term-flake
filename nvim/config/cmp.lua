@@ -10,16 +10,23 @@ vim.opt.completeopt = {
 
 cmp.setup({
     enabled = function()
-        -- Disable suggestions in comments
-        -- disable completion in comments
-        local context = require("cmp.config.context")
-        -- keep command mode completion enabled when cursor is in a comment
+        -- Tweak contexts where cmp is active
+
+        -- Disallow in telescope prompts
+        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+        if buftype == "prompt" then
+            return false
+        end
+
+        -- Allow in command mode
         if vim.api.nvim_get_mode().mode == 'c' then
             return true
-        else
-            return not context.in_treesitter_capture("comment")
-            and not context.in_syntax_group("Comment")
         end
+
+        -- keep command mode completion enabled when cursor is in a comment
+        local context = require("cmp.config.context")
+        return not context.in_treesitter_capture("comment")
+        and not context.in_syntax_group("Comment")
     end,
     snippet = {
         -- REQUIRED - you must specify a snippet engine
