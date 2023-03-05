@@ -32,7 +32,7 @@ in {
     "nix" = vim-nix;
     "wordmotion" = vim-wordmotion;
     "easyclip" = vim-easyclip;
-    "gruvbox" = gruvbox-community;
+    "gruvbox" = gruvbox-nvim;
     "lspconfig" = nvim-lspconfig;
     "lualine" = lualine-nvim;
     "searchbox" = vim-searchbox;

@@ -4,8 +4,11 @@
 -- TODO: make this into an external pluggable thing?
 -- TODO: develop own nix script for color injection?
 
-vim.g.gruvbox_italic = 0
-vim.g.gruvbox_bold = 0
+require("gruvbox").setup({
+  bold = false,
+  italic = false,
+})
+
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
