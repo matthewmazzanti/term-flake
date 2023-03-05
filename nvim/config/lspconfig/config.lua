@@ -36,8 +36,8 @@ local function setup(plugins)
         })
     end
 
-    lspconfig.sumneko_lua.setup({
-        cmd = sumneko_lua,
+    lspconfig.lua_ls.setup({
+        cmd = lua_ls,
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
